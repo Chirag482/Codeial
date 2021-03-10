@@ -2,6 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const app = express();
 const port = 8000;
+const expressLayouts = require("express-ejs-layouts");
 //for database mongodb
 const db = require("./config/mongoose");
 //for session cookies
@@ -14,6 +15,10 @@ app.use(express.urlencoded()); //used to read post requests
 
 app.use(cookieParser());
 
+app.use(expressLayouts);
+// extract style and scripts from sub pages into the layout
+app.set("layout extractStyles", true);
+app.set("layout extractScripts", true);
 //setting ejs for using views files
 app.set("view engine", "ejs");
 app.set("views", "./views");
