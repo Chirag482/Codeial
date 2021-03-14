@@ -42,7 +42,7 @@ module.exports.create = function (req, res) {
           console.log("error in creating user while signing up");
           return;
         }
-        return res.redirect("/users/sign-in");
+        return res.redirect("/users/profile");
       });
     } else {
       console.log("Email is used before");
