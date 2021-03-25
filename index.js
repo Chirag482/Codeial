@@ -14,7 +14,7 @@ const MongoStore = require("connect-mongodb-session")(session);
 app.use(express.urlencoded()); //used to read post requests
 
 app.use(cookieParser());
-
+app.use(express.static("./assets"));
 app.use(expressLayouts);
 // extract style and scripts from sub pages into the layout
 app.set("layout extractStyles", true);
