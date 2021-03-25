@@ -10,6 +10,7 @@ router.get(
   passport.checkAuthentication,
   usersController.profile
 );
+router.post("/update/:id", usersController.update);
 
 router.get("/sign-up", usersController.singUp);
 router.get("/sign-in", usersController.singIn);
