@@ -12,9 +12,4 @@ router.get(
   PostsController.destroy
 );
 
-router.get(
-  "/destroycomment/:id",
-  passport.checkAuthentication,
-  PostsController.destroyComment
-);
 module.exports = router;
