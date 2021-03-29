@@ -1,7 +1,9 @@
-<li>
+<li id="post-<%= post._id %>">
   <p>
     <% if(locals.user && locals.user.id == post.user.id) { %>
-    <small> <a href="/posts/destroy/<%= post.id %>">X</a> </small>
+    <small>
+      <a class="delete" href="/posts/destroy/<%= post.id %>">X</a>
+    </small>
     <% } %> <%= post.content %>
     <br />
     <small><%= post.user.name %></small>
@@ -26,7 +28,7 @@
         <p>
           <% if(locals.user && locals.user.id == comment.user.id) { %>
           <small>
-            <a href="/posts/destroycomment/<%= comment.id %>">X</a>
+            <a href="/comments/destroycomment/<%= comment.id %>">X</a>
           </small>
           <% } %> <%= comment.content %>
           <br />
