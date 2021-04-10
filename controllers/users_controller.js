@@ -31,17 +31,6 @@ module.exports.update = async function (req, res) {
   } else {
     return res.status(401).send("Unauthorized");
   }
-  // if (req.user.id == req.params.id) {
-  //   User.findByIdAndUpdate(
-  //     req.params.id,
-  //     req.body,
-  //     function (err, updatedUser) {
-  //       return res.redirect("back");
-  //     }
-  //   );
-  // } else {
-  //   return res.status(401).send("Unauthorized");
-  // }
 };
 
 //rendering sign up page
