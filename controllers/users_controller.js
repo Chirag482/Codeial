@@ -9,18 +9,39 @@ module.exports.profile = function (req, res) {
   });
 };
 
-module.exports.update = function (req, res) {
+module.exports.update = async function (req, res) {
   if (req.user.id == req.params.id) {
-    User.findByIdAndUpdate(
-      req.params.id,
-      req.body,
-      function (err, updatedUser) {
+    try {
+      let user = await User.findById(req.params.id);
+      User.uploadedAvatar(req, res, function (err) {
+        if (err) {
+          console.log("ERROR MULTER", err);
+        }
+        user.name = req.body.name;
+        user.email = req.body.email;
+        if (req.file) {
+          user.avatar = User.avatar_path + "/" + req.file.filename;
+        }
+        user.save();
         return res.redirect("back");
-      }
-    );
+      });
+    } catch (err) {
+      return res.redirect("back");
+    }
   } else {
     return res.status(401).send("Unauthorized");
   }
+  // if (req.user.id == req.params.id) {
+  //   User.findByIdAndUpdate(
+  //     req.params.id,
+  //     req.body,
+  //     function (err, updatedUser) {
+  //       return res.redirect("back");
+  //     }
+  //   );
+  // } else {
+  //   return res.status(401).send("Unauthorized");
+  // }
 };
 
 //rendering sign up page
